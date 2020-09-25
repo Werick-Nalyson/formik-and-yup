@@ -1,34 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { Formik } from 'formik';
 import './App.css';
 
 function App() {
-
-  const [values, setValues] = useState({
-    name: '',
-    email: ''
-  });
-
-  function onChange(e) {
-    setValues({
-      ...values,
-      [e.target.name]: e.target.value,
-      [e.target.name]: e.target.value,
-    });
-
-    console.log(values);
-  };
-
   return (
     <div className="App">
-      <form>
+      {/* render props */}
+      <Formik
+        initialValues={{
+          name: '',
+          email: ''
+        }}
+        render={({values, handleChange}) => (
+          <form>
 
-        <label>Nome</label>
-        <input name="name" values={values.name} onChange={onChange} />
+            <label>Nome</label>
+            <input name="name" values={values.name} onChange={handleChange} />
 
-        <label>Email</label>
-        <input name="email" values={values.email} onChange={onChange} />
+            <label>Email</label>
+            <input name="email" values={values.email} onChange={handleChange} />
 
-      </form>
+          </form>
+        )}
+      />
     </div>
   );
 }
